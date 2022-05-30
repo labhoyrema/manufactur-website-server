@@ -138,7 +138,7 @@ async function run() {
     app.get("/review", async (req, res) => {
       const query = {};
       const result = await reviewCollection.find(query).toArray();
-      res.send(result);
+      res.send(result.reverse());
     });
     app.get("/allorders", async (req, res) => {
       const user = req.query.user;
