@@ -135,7 +135,7 @@ async function run() {
     });
     app.get("/review", async (req, res) => {
       const id = req.params.id;
-      const query = { _id: ObjectId(id) };
+      const query = {};
 
       const result = await orderCollection.findOne(query);
       res.send(result);
