@@ -40,6 +40,7 @@ async function run() {
     const dataCollection = client.db("total-parts").collection("all-products");
     const orderCollection = client.db("total-parts").collection("added-carts");
     const userCollection = client.db("total-parts").collection("users");
+    const reviewCollection = client.db("total-parts").collection("reviews");
 
     const verifyAdmin = async (req, res, next) => {
       const requester = req.decoded.email;
@@ -130,14 +131,14 @@ async function run() {
     });
     app.post("/review", async (req, res) => {
       const review = req.body;
-      const result = await orderCollection.insertOne(review);
+      const result = await reviewCollection.insertOne(review);
       res.send(result);
     });
     app.get("/review", async (req, res) => {
       const id = req.params.id;
       const query = {};
 
-      const result = await orderCollection.findOne(query);
+      const result = await reviewCollection.findOne(query);
       res.send(result);
     });
     app.get("/allorders", async (req, res) => {
