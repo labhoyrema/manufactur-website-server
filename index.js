@@ -133,7 +133,7 @@ async function run() {
       const result = await orderCollection.insertOne(review);
       res.send(result);
     });
-    app.get("/review/:id", verifyJWT, async (req, res) => {
+    app.get("/review", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
 
