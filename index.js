@@ -128,6 +128,18 @@ async function run() {
       const result = await orderCollection.insertOne(orders);
       res.send(result);
     });
+    app.post("/review", async (req, res) => {
+      const review = req.body;
+      const result = await orderCollection.insertOne(review);
+      res.send(result);
+    });
+    app.get("/review/:id", verifyJWT, async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+
+      const result = await orderCollection.findOne(query);
+      res.send(result);
+    });
     app.get("/allorders", async (req, res) => {
       const user = req.query.user;
 
