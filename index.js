@@ -134,11 +134,10 @@ async function run() {
       const result = await reviewCollection.insertOne(review);
       res.send(result);
     });
-    app.get("/review", async (req, res) => {
-      const id = req.params.id;
-      const query = {};
 
-      const result = await reviewCollection.findOne(query);
+    app.get("/review", async (req, res) => {
+      const query = {};
+      const result = await reviewCollection.find(query).toArray();
       res.send(result);
     });
     app.get("/allorders", async (req, res) => {
